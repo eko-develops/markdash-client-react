@@ -6,10 +6,7 @@ interface NavbarProps {
 const Navbar = ({ setShowPromotionForm, showPromotionForm }: NavbarProps) => {
 	return (
 		<nav>
-			<ul className="flex justify-between font-bold  w-64">
-				<li>
-					<a href="#">Promotions</a>
-				</li>
+			<ul className="flex justify-between font-bold">
 				<li>
 					<button
 						onClick={() =>
