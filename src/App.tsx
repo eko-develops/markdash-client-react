@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import Header from './components/Header';
+import { IconContext } from '@phosphor-icons/react';
 
 function App() {
 	const [theme, setTheme] = useState('dark');
@@ -20,17 +22,17 @@ function App() {
 	};
 
 	return (
-		<div className="w-screen bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition duration-500 ease-in-out">
-			<div className="h-screen max-w-5xl mx-auto py-4 flex flex-col justify-center items-center">
-				<h1 className="font-bold text-4xl mb-4">Hello World</h1>
-				<button
-					className="bg-violet-500 p-4 rounded-3xl text-dark-text transition duration-500 ease-in-out"
-					onClick={handleThemeChange}
-				>
-					Change theme
-				</button>
+		<IconContext.Provider
+			value={{
+				size: '1.5rem',
+			}}
+		>
+			<div className="w-screen bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition duration-500 ease-in-out">
+				<div className="h-screen max-w-5xl mx-auto">
+					<Header handleThemeChange={handleThemeChange} theme={theme} />
+				</div>
 			</div>
-		</div>
+		</IconContext.Provider>
 	);
 }
 
