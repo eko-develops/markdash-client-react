@@ -20,11 +20,11 @@ function App() {
 	};
 
 	return (
-		<div className="w-screen bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-200 transition duration-500 ease-in-out">
+		<div className="w-screen bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition duration-500 ease-in-out">
 			<div className="h-screen max-w-5xl mx-auto py-4 flex flex-col justify-center items-center">
 				<h1 className="font-bold text-4xl mb-4">Hello World</h1>
 				<button
-					className="bg-purple-500 p-4 rounded-3xl text-gray-200  transition"
+					className="bg-violet-500 p-4 rounded-3xl text-dark-text transition duration-500 ease-in-out"
 					onClick={handleThemeChange}
 				>
 					Change theme
