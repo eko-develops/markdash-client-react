@@ -5,6 +5,7 @@ import Promotions from './components/Promotions';
 
 function App() {
 	const [theme, setTheme] = useState('dark');
+	const [promotions, setPromotions] = useState(null);
 
 	useEffect(() => {
 		if (theme === 'dark') {
@@ -22,6 +23,20 @@ function App() {
 		}
 	};
 
+	useEffect(() => {
+		fetch('http://localhost:5000/promotions', {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				setPromotions(data.promotions);
+			})
+			.catch((err) => console.log(err));
+	}, []);
+
 	return (
 		<IconContext.Provider
 			value={{
@@ -31,7 +46,7 @@ function App() {
 			<div className="min-h-screen pb-44 bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition duration-500 ease-in-out">
 				<div className="max-w-5xl mx-auto">
 					<Header handleThemeChange={handleThemeChange} theme={theme} />
-					<Promotions />
+					<Promotions promotions={promotions} />
 				</div>
 			</div>
 		</IconContext.Provider>

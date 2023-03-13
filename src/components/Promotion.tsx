@@ -1,6 +1,6 @@
 import { Check, X } from '@phosphor-icons/react';
 
-interface PromotionProps {
+export interface PromotionProps {
 	title: string;
 	description: string;
 	date_posted: string;
@@ -14,7 +14,7 @@ const Promotion = ({
 	scheduled,
 }: PromotionProps) => {
 	return (
-		<div className="flex justify-between space-y-10 border-light-text dark:border-dark-text p-4 rounded">
+		<div className="flex justify-between items-center border-light-text dark:border-dark-text p-4 rounded">
 			<div className="w-full">
 				<h3 className="font-bold text-lg">{title}</h3>
 				<p className="mb-4">{description}</p>
@@ -40,7 +40,7 @@ const Promotion = ({
 					</span>
 				</div>
 			</div>
-			<div className="flex flex-col items-end justify-center ml-2 font-bold text-sm space-y-2">
+			<div className="flex flex-col items-end font-bold text-sm">
 				<button>Complete</button>
 				<button>Edit</button>
 				<button>Delete</button>
