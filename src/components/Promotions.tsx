@@ -5,7 +5,7 @@ interface Promotion {
 	title: string;
 	description: string;
 	date_posted: string;
-	scheduled: boolean;
+	schedule_date: string;
 }
 
 interface PromotionsProps {
@@ -24,7 +24,7 @@ const Promotions = ({ promotions }: PromotionsProps) => {
 								title={promotion.title}
 								description={promotion.description}
 								date_posted={promotion.date_posted}
-								scheduled={promotion.scheduled}
+								schedule_date={promotion.schedule_date}
 							/>
 						</li>
 					))}
