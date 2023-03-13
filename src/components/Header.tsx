@@ -8,7 +8,7 @@ interface HeaderProps {
 
 const Header = ({ handleThemeChange, theme }: HeaderProps) => {
 	return (
-		<header className="flex justify-between items-center h-20">
+		<header className="flex justify-between items-center h-20 mb-20">
 			<div className="text-2xl font-bold">Marketing Dashboard</div>
 			<div className="flex items-center ">
 				<Navbar />
