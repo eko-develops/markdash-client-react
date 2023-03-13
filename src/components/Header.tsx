@@ -4,14 +4,24 @@ import { Sun, Moon } from '@phosphor-icons/react';
 interface HeaderProps {
 	theme: string;
 	handleThemeChange: () => void;
+	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
+	showPromotionForm: boolean;
 }
 
-const Header = ({ handleThemeChange, theme }: HeaderProps) => {
+const Header = ({
+	handleThemeChange,
+	theme,
+	setShowPromotionForm,
+	showPromotionForm,
+}: HeaderProps) => {
 	return (
 		<header className="flex justify-between items-center h-20 mb-20">
 			<div className="text-2xl font-bold">Marketing Dashboard</div>
 			<div className="flex items-center ">
-				<Navbar />
+				<Navbar
+					setShowPromotionForm={setShowPromotionForm}
+					showPromotionForm={showPromotionForm}
+				/>
 
 				<button className="ml-6 text-sm " onClick={handleThemeChange}>
 					{theme === 'dark' ? <Moon /> : <Sun />}

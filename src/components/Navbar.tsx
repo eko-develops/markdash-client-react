@@ -1,4 +1,9 @@
-const Navbar = () => {
+interface NavbarProps {
+	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
+	showPromotionForm: boolean;
+}
+
+const Navbar = ({ setShowPromotionForm, showPromotionForm }: NavbarProps) => {
 	return (
 		<nav>
 			<ul className="flex justify-between font-bold  w-64">
@@ -6,7 +11,15 @@ const Navbar = () => {
 					<a href="#">Promotions</a>
 				</li>
 				<li>
-					<a href="#">Add Promotion</a>
+					<button
+						onClick={() =>
+							showPromotionForm
+								? setShowPromotionForm(false)
+								: setShowPromotionForm(true)
+						}
+					>
+						Add Promotion
+					</button>
 				</li>
 			</ul>
 		</nav>

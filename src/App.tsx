@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import { IconContext } from '@phosphor-icons/react';
 import Promotions from './components/Promotions';
+import PromotionForm from './components/PromotionForm';
 
 function App() {
 	const [theme, setTheme] = useState('dark');
 	const [promotions, setPromotions] = useState(null);
+	const [showPromotionForm, setShowPromotionForm] = useState(false);
 
 	useEffect(() => {
 		if (theme === 'dark') {
@@ -45,7 +47,13 @@ function App() {
 		>
 			<div className="min-h-screen pb-44 bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition duration-500 ease-in-out">
 				<div className="max-w-5xl mx-auto">
-					<Header handleThemeChange={handleThemeChange} theme={theme} />
+					<Header
+						handleThemeChange={handleThemeChange}
+						theme={theme}
+						setShowPromotionForm={setShowPromotionForm}
+						showPromotionForm={showPromotionForm}
+					/>
+					{showPromotionForm && <PromotionForm />}
 					<Promotions promotions={promotions} />
 				</div>
 			</div>
