@@ -4,14 +4,14 @@ export interface PromotionProps {
 	title: string;
 	description: string;
 	date_posted: string;
-	scheduled: boolean;
+	schedule_date: string;
 }
 
 const Promotion = ({
 	title,
 	description,
 	date_posted,
-	scheduled,
+	schedule_date,
 }: PromotionProps) => {
 	return (
 		<div className="flex justify-between items-center border-light-text dark:border-dark-text p-4 rounded">
@@ -24,7 +24,7 @@ const Promotion = ({
 					</span>
 					<span className="text-xs text-gray-500 dark:text-gray-200 flex items-center transition duration-500 ease-in-out">
 						Scheduled
-						{scheduled ? (
+						{schedule_date ? (
 							<Check className="ml-2 text-green-800 " weight="bold" size={18} />
 						) : (
 							<X
