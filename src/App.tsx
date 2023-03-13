@@ -40,7 +40,7 @@ function App() {
 	return (
 		<IconContext.Provider
 			value={{
-				size: '1.5rem',
+				size: '24',
 			}}
 		>
 			<div className="min-h-screen pb-44 bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition duration-500 ease-in-out">

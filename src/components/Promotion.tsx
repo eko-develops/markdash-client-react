@@ -25,15 +25,11 @@ const Promotion = ({
 					<span className="text-xs text-gray-500 dark:text-gray-200 flex items-center transition duration-500 ease-in-out">
 						Scheduled
 						{scheduled ? (
-							<Check
-								className="ml-2 text-green-800 "
-								weight="bold"
-								size="1rem"
-							/>
+							<Check className="ml-2 text-green-800 " weight="bold" size={18} />
 						) : (
 							<X
 								className="ml-2 text-red-600 dark:text-red-600"
-								size="1rem"
+								size={18}
 								weight="bold"
 							/>
 						)}
