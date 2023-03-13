@@ -8,6 +8,8 @@ function App() {
 	const [theme, setTheme] = useState('dark');
 	const [promotions, setPromotions] = useState(null);
 	const [showPromotionForm, setShowPromotionForm] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		if (theme === 'dark') {
@@ -26,17 +28,32 @@ function App() {
 	};
 
 	useEffect(() => {
-		fetch('http://localhost:5000/promotions', {
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				setPromotions(data.promotions);
+		setTimeout(() => {
+			fetch('http://localhost:5000/promotions', {
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+				},
 			})
-			.catch((err) => console.log(err));
+				.then((res) => res.json())
+				.then((data) => {
+					setError(false);
+					setLoading(false);
+					setPromotions(data.promotions);
+				})
+				.catch((err) => {
+					setLoading(false);
+					setError(true);
+					if (
+						err instanceof TypeError &&
+						err.message.includes('NetworkError')
+					) {
+						console.error('Server may not be running: ', err);
+					} else {
+						console.error(err);
+					}
+				});
+		}, 1000);
 	}, []);
 
 	return (
@@ -53,8 +70,15 @@ function App() {
 						setShowPromotionForm={setShowPromotionForm}
 						showPromotionForm={showPromotionForm}
 					/>
-					{showPromotionForm && <PromotionForm />}
+
+					{showPromotionForm && (
+						<PromotionForm setShowPromotionForm={setShowPromotionForm} />
+					)}
+
 					<Promotions promotions={promotions} />
+
+					{loading && <h2>Loading..</h2>}
+					{error && <h2>Error fetching resources.</h2>}
 				</div>
 			</div>
 		</IconContext.Provider>
