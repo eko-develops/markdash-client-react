@@ -57,6 +57,35 @@ function App() {
 		}, 1000);
 	}, []);
 
+	const handleSchedule = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+		id: number
+	) => {
+		e.preventDefault();
+
+		fetch('http://localhost:5000/promotion/schedule', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ id }),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				const promotionCopy = promotions!.slice();
+				const scheduledPromotionId = data.scheduled_promotion.id;
+				for (const promotion of promotionCopy) {
+					if (promotion.id === scheduledPromotionId) {
+						promotion.scheduled
+							? (promotion.scheduled = false)
+							: (promotion.scheduled = true);
+					}
+				}
+				setPromotions(promotionCopy);
+			})
+			.catch((err) => console.log(err));
+	};
+
 	return (
 		<IconContext.Provider
 			value={{
@@ -76,7 +105,7 @@ function App() {
 						<PromotionForm setShowPromotionForm={setShowPromotionForm} />
 					)}
 
-					<Promotions promotions={promotions} />
+					<Promotions promotions={promotions} handleSchedule={handleSchedule} />
 
 					{loading && <h2>Loading..</h2>}
 					{error && <h2>Error fetching resources.</h2>}

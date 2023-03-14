@@ -1,12 +1,17 @@
 import { Check, X } from '@phosphor-icons/react';
 
 interface IPromotionProps {
+	id: number;
 	title: string;
 	description: string;
 	datePosted: string;
 	endDate: string;
 	startDate: string;
 	scheduled: boolean;
+	handleSchedule: (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+		id: number
+	) => void;
 }
 
 export interface IPromotion {
@@ -20,12 +25,14 @@ export interface IPromotion {
 }
 
 const Promotion = ({
+	id,
 	title,
 	description,
 	datePosted,
 	startDate,
 	endDate,
 	scheduled,
+	handleSchedule,
 }: IPromotionProps) => {
 	return (
 		<div className="flex justify-between items-center border-light-text dark:border-dark-text p-4 rounded">
@@ -66,7 +73,7 @@ const Promotion = ({
 			</div>
 			<div className="flex flex-col items-end font-bold text-sm">
 				<button>Complete</button>
-				<button>Schedule</button>
+				<button onClick={(e) => handleSchedule(e, id)}>Schedule</button>
 				<button>Edit</button>
 				<button>Delete</button>
 			</div>
