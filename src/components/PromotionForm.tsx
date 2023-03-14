@@ -8,8 +8,8 @@ const PromotionForm = ({ setShowPromotionForm }: PromotionFormProps) => {
 	const [formData, setFormData] = useState({
 		title: '',
 		description: '',
-		start_date: new Date().toISOString(),
-		end_date: new Date().toISOString(),
+		start_date: '',
+		end_date: '',
 		user_id: 1,
 	});
 
