@@ -8,7 +8,8 @@ const PromotionForm = ({ setShowPromotionForm }: PromotionFormProps) => {
 	const [formData, setFormData] = useState({
 		title: '',
 		description: '',
-		schedule_date: new Date().toLocaleString(),
+		start_date: new Date().toISOString(),
+		end_date: new Date().toISOString(),
 		user_id: 1,
 	});
 
@@ -73,12 +74,20 @@ const PromotionForm = ({ setShowPromotionForm }: PromotionFormProps) => {
 					value={formData.description}
 					onChange={handleInputChange}
 				/>
-				<label className="font-bold text-lg">Scheduled For</label>
+				<label className="font-bold text-lg">Start</label>
 				<input
-					name="schedule_date"
+					name="start_date"
 					required
 					className="border border-black/20 dark:text-light-text py-2 px-1 rounded mb-4"
-					value={formData.schedule_date}
+					value={formData.start_date}
+					onChange={handleInputChange}
+				/>
+				<label className="font-bold text-lg">End</label>
+				<input
+					name="end_date"
+					required
+					className="border border-black/20 dark:text-light-text py-2 px-1 rounded mb-4"
+					value={formData.end_date}
 					onChange={handleInputChange}
 				/>
 				<div className="flex">

@@ -1,18 +1,29 @@
 import { Check, X } from '@phosphor-icons/react';
 
-export interface PromotionProps {
+interface IPromotionProps {
+	title: string;
+	description: string;
+	datePosted: string;
+	endDate: string;
+	startDate: string;
+}
+
+export interface IPromotion {
+	id: number;
 	title: string;
 	description: string;
 	date_posted: string;
-	schedule_date: string;
+	start_date: string;
+	end_date: string;
 }
 
 const Promotion = ({
 	title,
 	description,
-	date_posted,
-	schedule_date,
-}: PromotionProps) => {
+	datePosted,
+	startDate,
+	endDate,
+}: IPromotionProps) => {
 	return (
 		<div className="flex justify-between items-center border-light-text dark:border-dark-text p-4 rounded">
 			<div className="w-full">
@@ -20,24 +31,39 @@ const Promotion = ({
 				<p className="mb-4">{description}</p>
 				<div className="flex flex-col space-y-2">
 					<span className="text-xs text-gray-500 dark:text-gray-200 transition duration-500 ease-in-out">
-						Date Posted: {date_posted}
+						Date Posted: {new Date(datePosted).toLocaleString()}
 					</span>
 					<span className="text-xs text-gray-500 dark:text-gray-200 flex items-center transition duration-500 ease-in-out">
 						Scheduled
-						{schedule_date ? (
-							<Check className="ml-2 text-green-800 " weight="bold" size={18} />
+						{startDate ? (
+							<Check className="mx-2 text-green-800 " weight="bold" size={18} />
 						) : (
 							<X
-								className="ml-2 text-red-600 dark:text-red-600"
+								className="mx-2 text-red-600 dark:text-red-600"
 								size={18}
 								weight="bold"
 							/>
 						)}
+						<div className="ml-4 flex space-x-8">
+							{startDate && (
+								<p>
+									<span className="font-bold">Start Date</span>:
+									{new Date(startDate).toLocaleString()}
+								</p>
+							)}
+							{endDate && (
+								<p>
+									<span className="font-bold">End Date</span>:{' '}
+									{new Date(endDate).toLocaleString()}
+								</p>
+							)}
+						</div>
 					</span>
 				</div>
 			</div>
 			<div className="flex flex-col items-end font-bold text-sm">
 				<button>Complete</button>
+				<button>Schedule</button>
 				<button>Edit</button>
 				<button>Delete</button>
 			</div>
