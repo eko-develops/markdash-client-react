@@ -48,13 +48,13 @@ const Promotion = ({
 							{startDate && (
 								<p>
 									<span className="font-bold">Start Date</span>:
-									{new Date(startDate).toLocaleString()}
+									{new Date(startDate).toLocaleDateString()}
 								</p>
 							)}
 							{endDate && (
 								<p>
 									<span className="font-bold">End Date</span>:{' '}
-									{new Date(endDate).toLocaleString()}
+									{new Date(endDate).toLocaleDateString()}
 								</p>
 							)}
 						</div>
