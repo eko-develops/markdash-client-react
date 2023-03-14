@@ -77,6 +77,7 @@ const PromotionForm = ({ setShowPromotionForm }: PromotionFormProps) => {
 				<label className="font-bold text-lg">Start</label>
 				<input
 					name="start_date"
+					type="date"
 					required
 					className="border border-black/20 dark:text-light-text py-2 px-1 rounded mb-4"
 					value={formData.start_date}
@@ -85,6 +86,7 @@ const PromotionForm = ({ setShowPromotionForm }: PromotionFormProps) => {
 				<label className="font-bold text-lg">End</label>
 				<input
 					name="end_date"
+					type="date"
 					required
 					className="border border-black/20 dark:text-light-text py-2 px-1 rounded mb-4"
 					value={formData.end_date}
