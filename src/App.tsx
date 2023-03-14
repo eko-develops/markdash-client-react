@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import { IconContext } from '@phosphor-icons/react';
 import Promotions from './components/Promotions';
+import { IPromotion } from './components/Promotion';
 import PromotionForm from './components/PromotionForm';
 
 function App() {
 	const [theme, setTheme] = useState('dark');
-	const [promotions, setPromotions] = useState(null);
+	const [promotions, setPromotions] = useState<IPromotion[] | null>(null);
 	const [showPromotionForm, setShowPromotionForm] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
@@ -79,6 +80,9 @@ function App() {
 
 					{loading && <h2>Loading..</h2>}
 					{error && <h2>Error fetching resources.</h2>}
+					{promotions != null && promotions.length === 0 && (
+						<h2>No promotions to load.</h2>
+					)}
 				</div>
 			</div>
 		</IconContext.Provider>
