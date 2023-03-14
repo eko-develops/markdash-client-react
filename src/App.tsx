@@ -64,7 +64,7 @@ function App() {
 			}}
 		>
 			<div className="min-h-screen pb-44 bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition duration-500 ease-in-out">
-				<div className="max-w-5xl mx-auto">
+				<div className="max-w-5xl px-4 mx-auto">
 					<Header
 						handleThemeChange={handleThemeChange}
 						theme={theme}
