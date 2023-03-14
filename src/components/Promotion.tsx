@@ -6,6 +6,7 @@ interface IPromotionProps {
 	datePosted: string;
 	endDate: string;
 	startDate: string;
+	scheduled: boolean;
 }
 
 export interface IPromotion {
@@ -15,6 +16,7 @@ export interface IPromotion {
 	date_posted: string;
 	start_date: string;
 	end_date: string;
+	scheduled: boolean;
 }
 
 const Promotion = ({
@@ -23,6 +25,7 @@ const Promotion = ({
 	datePosted,
 	startDate,
 	endDate,
+	scheduled,
 }: IPromotionProps) => {
 	return (
 		<div className="flex justify-between items-center border-light-text dark:border-dark-text p-4 rounded">
@@ -35,7 +38,7 @@ const Promotion = ({
 					</span>
 					<span className="text-xs text-gray-500 dark:text-gray-200 flex items-center transition duration-500 ease-in-out">
 						Scheduled
-						{startDate ? (
+						{scheduled ? (
 							<Check className="mx-2 text-green-800 " weight="bold" size={18} />
 						) : (
 							<X

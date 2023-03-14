@@ -18,6 +18,7 @@ const Promotions = ({ promotions }: IPromotionsProps) => {
 								datePosted={promotion.date_posted}
 								startDate={promotion.start_date}
 								endDate={promotion.end_date}
+								scheduled={promotion.scheduled}
 							/>
 						</li>
 					))}
