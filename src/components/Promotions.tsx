@@ -1,18 +1,10 @@
-import Promotion from './Promotion';
+import Promotion, { IPromotion } from './Promotion';
 
-interface Promotion {
-	id: number;
-	title: string;
-	description: string;
-	date_posted: string;
-	schedule_date: string;
+interface IPromotionsProps {
+	promotions: IPromotion[] | null;
 }
 
-interface PromotionsProps {
-	promotions: Promotion[] | null;
-}
-
-const Promotions = ({ promotions }: PromotionsProps) => {
+const Promotions = ({ promotions }: IPromotionsProps) => {
 	return (
 		<div>
 			<h1 className="text-2xl font-bold mb-4">Promotions</h1>
@@ -23,8 +15,9 @@ const Promotions = ({ promotions }: PromotionsProps) => {
 							<Promotion
 								title={promotion.title}
 								description={promotion.description}
-								date_posted={promotion.date_posted}
-								schedule_date={promotion.schedule_date}
+								datePosted={promotion.date_posted}
+								startDate={promotion.start_date}
+								endDate={promotion.end_date}
 							/>
 						</li>
 					))}

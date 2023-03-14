@@ -1,7 +1,7 @@
 import Navbar from './Navbar';
 import { Sun, Moon } from '@phosphor-icons/react';
 
-interface HeaderProps {
+interface IHeaderProps {
 	theme: string;
 	handleThemeChange: () => void;
 	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,7 +13,7 @@ const Header = ({
 	theme,
 	setShowPromotionForm,
 	showPromotionForm,
-}: HeaderProps) => {
+}: IHeaderProps) => {
 	return (
 		<header className="flex justify-between items-center h-20 mb-20">
 			<div className="text-2xl font-bold">Marketing Dashboard</div>

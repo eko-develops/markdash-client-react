@@ -1,9 +1,9 @@
-interface NavbarProps {
+interface INavbarProps {
 	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
 	showPromotionForm: boolean;
 }
 
-const Navbar = ({ setShowPromotionForm, showPromotionForm }: NavbarProps) => {
+const Navbar = ({ setShowPromotionForm, showPromotionForm }: INavbarProps) => {
 	return (
 		<nav>
 			<ul className="flex justify-between font-bold">
