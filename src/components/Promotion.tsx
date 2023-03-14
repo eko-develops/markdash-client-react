@@ -53,7 +53,7 @@ const Promotion = ({
 							)}
 							{endDate && (
 								<p>
-									<span className="font-bold">End Date</span>:{' '}
+									<span className="font-bold">End Date</span>:
 									{new Date(endDate).toLocaleDateString()}
 								</p>
 							)}
