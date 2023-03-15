@@ -1,4 +1,4 @@
-import Promotion from './Promotion';
+import Promotion from './Promotion/Promotion';
 import { IPromotionsProps } from '../types';
 
 const Promotions = ({

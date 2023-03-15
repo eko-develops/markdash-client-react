@@ -59,3 +59,15 @@ export interface IFormData {
 	end_date: string;
 	user_id: number;
 }
+
+export interface IPromotionFooterProps {
+	datePosted: string;
+	startDate: string;
+	endDate: string;
+	scheduled: boolean;
+}
+
+export interface IPromotionContentProps {
+	title: string;
+	description: string;
+}
