@@ -107,7 +107,21 @@ function App() {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
+				const addedPromotion = {
+					date_posted: data.new_promotion.date_posted,
+					description: data.new_promotion.description,
+					end_date: data.new_promotion.end_date,
+					id: data.new_promotion.id,
+					scheduled: data.new_promotion.scheduled,
+					start_date: data.new_promotion.start_date,
+					title: data.new_promotion.title,
+				};
+
+				if (promotions) {
+					setPromotions([addedPromotion, ...promotions]);
+				} else {
+					setPromotions([addedPromotion]);
+				}
 			})
 			.catch((err) => {
 				if (err instanceof TypeError && err.message.includes('NetworkError')) {
