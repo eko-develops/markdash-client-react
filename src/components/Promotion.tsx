@@ -12,6 +12,12 @@ const Promotion = ({
 	handleSchedule,
 	handleDelete,
 }: IPromotionProps) => {
+	const parseDateString = (date: string) => {
+		return new Date(date).toLocaleDateString('en-CA', {
+			timeZone: 'UTC',
+		});
+	};
+
 	return (
 		<div className="flex justify-between items-center border-light-text dark:border-dark-text p-4 rounded">
 			<div className="w-full">
@@ -36,13 +42,13 @@ const Promotion = ({
 							{startDate && (
 								<p>
 									<span className="font-bold">Start Date</span>:
-									{new Date(startDate).toLocaleDateString()}
+									{parseDateString(startDate)}
 								</p>
 							)}
 							{endDate && (
 								<p>
 									<span className="font-bold">End Date</span>:
-									{new Date(endDate).toLocaleDateString()}
+									{parseDateString(endDate)}
 								</p>
 							)}
 						</div>
