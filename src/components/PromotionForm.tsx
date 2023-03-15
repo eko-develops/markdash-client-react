@@ -5,6 +5,7 @@ const PromotionForm = ({
 	handleAdd,
 	formData,
 	setFormData,
+	defaultFormData,
 }: IPromotionFormProps) => {
 	const handleCancel = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault();
@@ -20,6 +21,13 @@ const PromotionForm = ({
 			...formData,
 			[name]: value,
 		});
+	};
+
+	const handleClearFields = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+	) => {
+		e.preventDefault();
+		setFormData(defaultFormData);
 	};
 
 	return (
@@ -71,8 +79,8 @@ const PromotionForm = ({
 						Add
 					</button>
 					<button
-						type="submit"
 						className="bg-gray-500 w-28 rounded py-2 text-white mr-2"
+						onClick={(e) => handleClearFields(e)}
 					>
 						Clear Fields
 					</button>

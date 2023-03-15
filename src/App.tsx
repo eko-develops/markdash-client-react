@@ -8,13 +8,13 @@ import PromotionForm from './components/PromotionForm';
 import { IPromotion, IFormData } from './types';
 
 function App() {
-	const defaultFormData = {
+	const [defaultFormData, _] = useState<IFormData>({
 		title: '',
 		description: '',
 		start_date: '',
 		end_date: '',
 		user_id: 1,
-	};
+	});
 	const [theme, setTheme] = useState('dark');
 	const [promotions, setPromotions] = useState<IPromotion[] | null>(null);
 	const [showPromotionForm, setShowPromotionForm] = useState(false);
@@ -201,6 +201,7 @@ function App() {
 							handleAdd={handleAdd}
 							formData={formData}
 							setFormData={setFormData}
+							defaultFormData={defaultFormData}
 						/>
 					)}
 

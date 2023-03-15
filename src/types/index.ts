@@ -3,6 +3,7 @@ export interface IPromotionFormProps {
 	handleAdd: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	formData: IFormData;
 	setFormData: React.Dispatch<React.SetStateAction<IFormData>>;
+	defaultFormData: IFormData;
 }
 
 export interface IHeaderProps {
