@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { IconContext } from '@phosphor-icons/react';
+import { CloudLightning, IconContext } from '@phosphor-icons/react';
 
 import Header from './components/Header';
 import Promotions from './components/Promotions';
@@ -98,12 +98,32 @@ function App() {
 	const handleAdd = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault();
 
+		const stringDateToUtcIso = (date: string) => {
+			const [year, month, day] = date.split('-');
+
+			const yearNum = parseInt(year);
+			const monthNum = parseInt(month) - 1;
+			const dayNum = parseInt(day);
+
+			const utcDate = new Date(Date.UTC(yearNum, monthNum, dayNum)); // create a new Date object with UTC time
+			const utcIsoString = utcDate.toISOString(); // convert the UTC date to ISO string
+			return utcIsoString;
+		};
+
+		const formDataCopy = { ...formData };
+
+		const bodyData = {
+			...formDataCopy,
+			start_date: stringDateToUtcIso(formDataCopy.start_date),
+			end_date: stringDateToUtcIso(formDataCopy.end_date),
+		};
+
 		fetch('http://localhost:5000/promotion', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(formData),
+			body: JSON.stringify(bodyData),
 		})
 			.then((res) => res.json())
 			.then((data) => {
