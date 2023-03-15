@@ -1,5 +1,3 @@
-import { SetStateAction } from 'react';
-
 export interface IPromotionFormProps {
 	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
 	handleAdd: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -77,4 +75,25 @@ export interface IPromotionContentProps {
 export interface IThemeToggleProps {
 	theme: string;
 	setTheme: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export interface IPromotionFormLabelProps {
+	title: string;
+}
+
+export interface IPromotionFormInputProps {
+	value: string;
+	name: string;
+	max?: number;
+	type?: string;
+	onChange: (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => void;
+}
+
+export interface IPromotionFormActionsProps {
+	handleAdd: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	setFormData: React.Dispatch<React.SetStateAction<IFormData>>;
+	defaultFormData: IFormData;
+	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
 }

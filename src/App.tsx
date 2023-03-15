@@ -3,7 +3,7 @@ import { IconContext } from '@phosphor-icons/react';
 
 import Header from './components/Header';
 import Promotions from './components/Promotions';
-import PromotionForm from './components/PromotionForm';
+import PromotionForm from './components/PromotionForm/PromotionForm';
 
 import { IPromotion, IFormData } from './types';
 
@@ -107,9 +107,13 @@ function App() {
 
 		const bodyData = {
 			...formDataCopy,
-			start_date: stringDateToUtcIso(formDataCopy.start_date),
-			end_date: stringDateToUtcIso(formDataCopy.end_date),
 		};
+		if (bodyData.start_date !== '') {
+			bodyData.start_date = stringDateToUtcIso(formDataCopy.start_date);
+		}
+		if (bodyData.end_date !== '') {
+			bodyData.end_date = stringDateToUtcIso(formDataCopy.end_date);
+		}
 
 		fetch('http://localhost:5000/promotion', {
 			method: 'POST',
