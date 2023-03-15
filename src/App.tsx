@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CloudLightning, IconContext } from '@phosphor-icons/react';
+import { IconContext } from '@phosphor-icons/react';
 
 import Header from './components/Header';
 import Promotions from './components/Promotions';
@@ -58,14 +58,6 @@ function App() {
 				});
 		}, 1000);
 	}, []);
-
-	const handleThemeChange = () => {
-		if (theme === 'dark') {
-			setTheme('light');
-		} else {
-			setTheme('dark');
-		}
-	};
 
 	const handleSchedule = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -189,8 +181,8 @@ function App() {
 			<div className="min-h-screen pb-44 bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text transition duration-500 ease-in-out">
 				<div className="max-w-5xl px-4 mx-auto">
 					<Header
-						handleThemeChange={handleThemeChange}
 						theme={theme}
+						setTheme={setTheme}
 						setShowPromotionForm={setShowPromotionForm}
 						showPromotionForm={showPromotionForm}
 					/>

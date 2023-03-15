@@ -1,10 +1,10 @@
 import Navbar from './Navbar';
-import { Sun, Moon } from '@phosphor-icons/react';
 import { IHeaderProps } from '../types';
+import ThemeToggle from './ThemeToggle';
 
 const Header = ({
-	handleThemeChange,
 	theme,
+	setTheme,
 	setShowPromotionForm,
 	showPromotionForm,
 }: IHeaderProps) => {
@@ -16,10 +16,7 @@ const Header = ({
 					setShowPromotionForm={setShowPromotionForm}
 					showPromotionForm={showPromotionForm}
 				/>
-
-				<button className="ml-6 text-sm " onClick={handleThemeChange}>
-					{theme === 'dark' ? <Moon /> : <Sun />}
-				</button>
+				<ThemeToggle theme={theme} setTheme={setTheme} />
 			</div>
 		</header>
 	);

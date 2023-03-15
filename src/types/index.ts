@@ -1,3 +1,5 @@
+import { SetStateAction } from 'react';
+
 export interface IPromotionFormProps {
 	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
 	handleAdd: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -8,7 +10,7 @@ export interface IPromotionFormProps {
 
 export interface IHeaderProps {
 	theme: string;
-	handleThemeChange: () => void;
+	setTheme: React.Dispatch<React.SetStateAction<string>>;
 	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
 	showPromotionForm: boolean;
 }
@@ -70,4 +72,9 @@ export interface IPromotionFooterProps {
 export interface IPromotionContentProps {
 	title: string;
 	description: string;
+}
+
+export interface IThemeToggleProps {
+	theme: string;
+	setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
