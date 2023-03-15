@@ -1,28 +1,5 @@
 import { Check, X } from '@phosphor-icons/react';
-
-interface IPromotionProps {
-	id: number;
-	title: string;
-	description: string;
-	datePosted: string;
-	endDate: string;
-	startDate: string;
-	scheduled: boolean;
-	handleSchedule: (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-		id: number
-	) => void;
-}
-
-export interface IPromotion {
-	id: number;
-	title: string;
-	description: string;
-	date_posted: string;
-	start_date: string;
-	end_date: string;
-	scheduled: boolean;
-}
+import { IPromotionProps } from '../types';
 
 const Promotion = ({
 	id,

@@ -1,44 +1,14 @@
-import { useState } from 'react';
+import { IPromotionFormProps } from '../types';
 
-interface PromotionFormProps {
-	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const PromotionForm = ({ setShowPromotionForm }: PromotionFormProps) => {
-	const [formData, setFormData] = useState({
-		title: '',
-		description: '',
-		start_date: '',
-		end_date: '',
-		user_id: 1,
-	});
-
+const PromotionForm = ({
+	setShowPromotionForm,
+	handleAdd,
+	formData,
+	setFormData,
+}: IPromotionFormProps) => {
 	const handleCancel = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault();
 		setShowPromotionForm(false);
-	};
-
-	const handleAdd = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		e.preventDefault();
-
-		fetch('http://localhost:5000/promotion', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(formData),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-			})
-			.catch((err) => {
-				if (err instanceof TypeError && err.message.includes('NetworkError')) {
-					console.error('Server may not be running: ', err);
-				} else {
-					console.error(err);
-				}
-			});
 	};
 
 	const handleInputChange = (

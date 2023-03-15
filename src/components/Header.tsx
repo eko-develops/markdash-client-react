@@ -1,12 +1,6 @@
 import Navbar from './Navbar';
 import { Sun, Moon } from '@phosphor-icons/react';
-
-interface IHeaderProps {
-	theme: string;
-	handleThemeChange: () => void;
-	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
-	showPromotionForm: boolean;
-}
+import { IHeaderProps } from '../types';
 
 const Header = ({
 	handleThemeChange,

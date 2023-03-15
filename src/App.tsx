@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
 import { IconContext } from '@phosphor-icons/react';
+
+import Header from './components/Header';
 import Promotions from './components/Promotions';
-import { IPromotion } from './components/Promotion';
 import PromotionForm from './components/PromotionForm';
+
+import { IPromotion, IFormData } from './types';
 
 function App() {
 	const [theme, setTheme] = useState('dark');
@@ -11,6 +13,13 @@ function App() {
 	const [showPromotionForm, setShowPromotionForm] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
+	const [formData, setFormData] = useState<IFormData>({
+		title: '',
+		description: '',
+		start_date: '',
+		end_date: '',
+		user_id: 1,
+	});
 
 	useEffect(() => {
 		if (theme === 'dark') {
@@ -19,14 +28,6 @@ function App() {
 			document.documentElement.classList.remove('dark');
 		}
 	}, [theme]);
-
-	const handleThemeChange = () => {
-		if (theme === 'dark') {
-			setTheme('light');
-		} else {
-			setTheme('dark');
-		}
-	};
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -57,6 +58,14 @@ function App() {
 		}, 1000);
 	}, []);
 
+	const handleThemeChange = () => {
+		if (theme === 'dark') {
+			setTheme('light');
+		} else {
+			setTheme('dark');
+		}
+	};
+
 	const handleSchedule = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 		id: number
@@ -86,6 +95,29 @@ function App() {
 			.catch((err) => console.log(err));
 	};
 
+	const handleAdd = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		e.preventDefault();
+
+		fetch('http://localhost:5000/promotion', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(formData),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+			})
+			.catch((err) => {
+				if (err instanceof TypeError && err.message.includes('NetworkError')) {
+					console.error('Server may not be running: ', err);
+				} else {
+					console.error(err);
+				}
+			});
+	};
+
 	return (
 		<IconContext.Provider
 			value={{
@@ -102,7 +134,12 @@ function App() {
 					/>
 
 					{showPromotionForm && (
-						<PromotionForm setShowPromotionForm={setShowPromotionForm} />
+						<PromotionForm
+							setShowPromotionForm={setShowPromotionForm}
+							handleAdd={handleAdd}
+							formData={formData}
+							setFormData={setFormData}
+						/>
 					)}
 
 					<Promotions promotions={promotions} handleSchedule={handleSchedule} />

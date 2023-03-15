@@ -1,7 +1,4 @@
-interface INavbarProps {
-	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
-	showPromotionForm: boolean;
-}
+import { INavbarProps } from '../types';
 
 const Navbar = ({ setShowPromotionForm, showPromotionForm }: INavbarProps) => {
 	return (

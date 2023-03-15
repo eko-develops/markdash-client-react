@@ -1,12 +1,5 @@
-import Promotion, { IPromotion } from './Promotion';
-
-interface IPromotionsProps {
-	promotions: IPromotion[] | null;
-	handleSchedule: (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-		id: number
-	) => void;
-}
+import Promotion from './Promotion';
+import { IPromotionsProps } from '../types';
 
 const Promotions = ({ promotions, handleSchedule }: IPromotionsProps) => {
 	return (
