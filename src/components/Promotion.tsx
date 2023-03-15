@@ -10,6 +10,7 @@ const Promotion = ({
 	endDate,
 	scheduled,
 	handleSchedule,
+	handleDelete,
 }: IPromotionProps) => {
 	return (
 		<div className="flex justify-between items-center border-light-text dark:border-dark-text p-4 rounded">
@@ -52,7 +53,7 @@ const Promotion = ({
 				<button>Complete</button>
 				<button onClick={(e) => handleSchedule(e, id)}>Schedule</button>
 				<button>Edit</button>
-				<button>Delete</button>
+				<button onClick={(e) => handleDelete(id)}>Delete</button>
 			</div>
 		</div>
 	);

@@ -132,6 +132,31 @@ function App() {
 			});
 	};
 
+	const handleDelete = (id: number) => {
+		fetch('http://localhost:5000/promotion', {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ promotion_id: id }),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				const { id } = data.deleted_promo;
+				const filteredPromotions = promotions!.filter(
+					(promotion) => promotion.id !== id
+				);
+				setPromotions(filteredPromotions);
+			})
+			.catch((err) => {
+				if (err instanceof TypeError && err.message.includes('NetworkError')) {
+					console.error('Server may not be running: ', err);
+				} else {
+					console.error(err);
+				}
+			});
+	};
+
 	return (
 		<IconContext.Provider
 			value={{
@@ -156,7 +181,11 @@ function App() {
 						/>
 					)}
 
-					<Promotions promotions={promotions} handleSchedule={handleSchedule} />
+					<Promotions
+						promotions={promotions}
+						handleSchedule={handleSchedule}
+						handleDelete={handleDelete}
+					/>
 
 					{loading && <h2>Loading..</h2>}
 					{error && <h2>Error fetching resources.</h2>}

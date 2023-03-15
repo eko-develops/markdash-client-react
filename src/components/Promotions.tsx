@@ -1,7 +1,11 @@
 import Promotion from './Promotion';
 import { IPromotionsProps } from '../types';
 
-const Promotions = ({ promotions, handleSchedule }: IPromotionsProps) => {
+const Promotions = ({
+	promotions,
+	handleSchedule,
+	handleDelete,
+}: IPromotionsProps) => {
 	return (
 		<div>
 			<h1 className="text-2xl font-bold mb-4">Promotions</h1>
@@ -18,6 +22,7 @@ const Promotions = ({ promotions, handleSchedule }: IPromotionsProps) => {
 								endDate={promotion.end_date}
 								scheduled={promotion.scheduled}
 								handleSchedule={handleSchedule}
+								handleDelete={handleDelete}
 							/>
 						</li>
 					))}

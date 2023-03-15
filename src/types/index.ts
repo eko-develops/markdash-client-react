@@ -29,6 +29,7 @@ export interface IPromotionProps {
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 		id: number
 	) => void;
+	handleDelete: (id: number) => void;
 }
 
 export interface IPromotion {
@@ -47,6 +48,7 @@ export interface IPromotionsProps {
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 		id: number
 	) => void;
+	handleDelete: (id: number) => void;
 }
 
 export interface IFormData {
