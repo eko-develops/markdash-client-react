@@ -8,18 +8,19 @@ import PromotionForm from './components/PromotionForm';
 import { IPromotion, IFormData } from './types';
 
 function App() {
-	const [theme, setTheme] = useState('dark');
-	const [promotions, setPromotions] = useState<IPromotion[] | null>(null);
-	const [showPromotionForm, setShowPromotionForm] = useState(false);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(false);
-	const [formData, setFormData] = useState<IFormData>({
+	const defaultFormData = {
 		title: '',
 		description: '',
 		start_date: '',
 		end_date: '',
 		user_id: 1,
-	});
+	};
+	const [theme, setTheme] = useState('dark');
+	const [promotions, setPromotions] = useState<IPromotion[] | null>(null);
+	const [showPromotionForm, setShowPromotionForm] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
+	const [formData, setFormData] = useState<IFormData>(defaultFormData);
 
 	useEffect(() => {
 		if (theme === 'dark') {
@@ -142,6 +143,8 @@ function App() {
 				} else {
 					setPromotions([addedPromotion]);
 				}
+
+				setFormData(defaultFormData);
 			})
 			.catch((err) => {
 				if (err instanceof TypeError && err.message.includes('NetworkError')) {
