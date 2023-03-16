@@ -1,21 +1,17 @@
-interface IPromotionActionsProps {
-	id: number;
-	handleSchedule: (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-		id: number
-	) => void;
-	handleDelete: (id: number) => void;
-}
+import { IPromotionActionsProps } from '../../types';
+
 const PromotionActions = ({
 	id,
 	handleSchedule,
 	handleDelete,
+	editing,
+	setEditing,
 }: IPromotionActionsProps) => {
 	return (
 		<>
 			<button>Complete</button>
 			<button onClick={(e) => handleSchedule(e, id)}>Schedule</button>
-			<button>Edit</button>
+			<button onClick={(e) => setEditing(!editing)}>Edit</button>
 			<button onClick={() => handleDelete(id)}>Delete</button>
 		</>
 	);

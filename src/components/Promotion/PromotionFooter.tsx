@@ -6,6 +6,7 @@ const PromotionFooter = ({
 	startDate,
 	endDate,
 	scheduled,
+	editing,
 }: IPromotionFooterProps) => {
 	const parseDateString = (date: string) => {
 		return new Date(date).toLocaleDateString('en-CA', {
@@ -14,7 +15,7 @@ const PromotionFooter = ({
 	};
 
 	return (
-		<>
+		<div>
 			<span className="text-xs text-gray-500 dark:text-gray-200 transition duration-500 ease-in-out">
 				Date Posted: {new Date(datePosted).toLocaleString()}
 			</span>
@@ -33,18 +34,34 @@ const PromotionFooter = ({
 					{startDate && (
 						<p>
 							<span className="font-bold">Start Date</span>:
-							{parseDateString(startDate)}
+							{editing ? (
+								<input
+									type="date"
+									value="2023-03-15"
+									className="rounded text-light-text"
+								/>
+							) : (
+								parseDateString(startDate)
+							)}
 						</p>
 					)}
 					{endDate && (
 						<p>
 							<span className="font-bold">End Date</span>:
-							{parseDateString(endDate)}
+							{editing ? (
+								<input
+									type="date"
+									value="2023-04-01"
+									className="rounded text-light-text"
+								/>
+							) : (
+								parseDateString(endDate)
+							)}
 						</p>
 					)}
 				</div>
 			</span>
-		</>
+		</div>
 	);
 };
 

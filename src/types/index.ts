@@ -65,11 +65,13 @@ export interface IPromotionFooterProps {
 	startDate: string;
 	endDate: string;
 	scheduled: boolean;
+	editing: boolean;
 }
 
 export interface IPromotionContentProps {
 	title: string;
 	description: string;
+	editing: boolean;
 }
 
 export interface IThemeToggleProps {
@@ -96,4 +98,15 @@ export interface IPromotionFormActionsProps {
 	setFormData: React.Dispatch<React.SetStateAction<IFormData>>;
 	defaultFormData: IFormData;
 	setShowPromotionForm: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface IPromotionActionsProps {
+	id: number;
+	handleSchedule: (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+		id: number
+	) => void;
+	handleDelete: (id: number) => void;
+	editing: boolean;
+	setEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }
