@@ -157,7 +157,7 @@ function App() {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ promotion_id: id }),
+			body: JSON.stringify({ id }),
 		})
 			.then((res) => res.json())
 			.then((data) => {
