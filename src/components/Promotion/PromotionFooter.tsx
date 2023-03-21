@@ -1,5 +1,11 @@
+import { useState, useEffect } from 'react';
 import { Check, X } from '@phosphor-icons/react';
 import { IPromotionFooterProps } from '../../types';
+import {
+	getDateOnlyString,
+	getValidInputDate,
+	getFullDateTimeString,
+} from '../../utils';
 
 const PromotionFooter = ({
 	datePosted,
@@ -8,16 +14,23 @@ const PromotionFooter = ({
 	scheduled,
 	editing,
 }: IPromotionFooterProps) => {
-	const parseDateString = (date: string) => {
-		return new Date(date).toLocaleDateString('en-CA', {
-			timeZone: 'UTC',
-		});
-	};
+	const [editStartDate, setEditStartDate] = useState('');
+	const [editEndDate, setEditEndDate] = useState('');
+
+	useEffect(() => {
+		if (editing) {
+			setEditStartDate(getValidInputDate(startDate));
+			setEditEndDate(getValidInputDate(endDate));
+		} else {
+			setEditStartDate('');
+			setEditEndDate('');
+		}
+	}, [editing]);
 
 	return (
 		<div>
 			<span className="text-xs text-gray-500 dark:text-gray-200 transition duration-500 ease-in-out">
-				Date Posted: {new Date(datePosted).toLocaleString()}
+				Date Posted: {getFullDateTimeString(datePosted)}
 			</span>
 			<span className="text-xs text-gray-500 dark:text-gray-200 flex items-center transition duration-500 ease-in-out">
 				Scheduled
@@ -31,31 +44,33 @@ const PromotionFooter = ({
 					/>
 				)}
 				<div className="ml-4 flex space-x-8">
+					<span className="font-bold">Start Date</span>:
 					{startDate && (
 						<p>
-							<span className="font-bold">Start Date</span>:
 							{editing ? (
 								<input
 									type="date"
-									value="2023-03-15"
+									value={editStartDate}
 									className="rounded text-light-text"
+									onChange={(e) => setEditStartDate(e.target.value)}
 								/>
 							) : (
-								parseDateString(startDate)
+								getDateOnlyString(startDate)
 							)}
 						</p>
 					)}
+					<span className="font-bold">End Date</span>:
 					{endDate && (
 						<p>
-							<span className="font-bold">End Date</span>:
 							{editing ? (
 								<input
 									type="date"
-									value="2023-04-01"
+									value={editEndDate}
 									className="rounded text-light-text"
+									onChange={(e) => setEditEndDate(e.target.value)}
 								/>
 							) : (
-								parseDateString(endDate)
+								getDateOnlyString(endDate)
 							)}
 						</p>
 					)}
